@@ -7,6 +7,7 @@ from blog_app.models import Post
 class PostDetailView(DetailView):
     model = Post
     context_object_name = 'post'
+    template_name = 'blog_app/detail.html'
 
     def get_queryset(self, queryset=None):
         queryset = super().get_queryset()
@@ -17,4 +18,4 @@ class PostListView(ListView):
     queryset = Post.published_ones.all()
     context_object_name = 'posts'
     paginate_by = 3
-    template_name = 'blog/post/list.html'
+    template_name = 'blog_app/list.html'
