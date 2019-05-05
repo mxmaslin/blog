@@ -1,3 +1,20 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from django.views.generic import DetailView, ListView
 
-# Create your views here.
+from blog_app.models import Post
+
+
+class PostDetailView(DetailView):
+    model = Post
+    context_object_name = 'post'
+
+    def get_queryset(self, queryset=None):
+        queryset = super().get_queryset()
+        return queryset.filter(status='published')
+
+
+class PostListView(ListView):
+    queryset = Post.published_ones.all()
+    context_object_name = 'posts'
+    paginate_by = 3
+    template_name = 'blog/post/list.html'
