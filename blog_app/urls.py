@@ -4,7 +4,7 @@ from blog_app.views import PostDetailView, PostListView
 
 urlpatterns = [
     path(
-        '<year>:year/<month>:month/<day>:day/<slug>:slug',
+        '<year>/<month>/<day>/<slug>',
         PostDetailView.as_view(),
         name='post_detail'
     ),
